@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View , TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Wrapper = styled.View`
     backgroundColor: #fff;
@@ -34,7 +34,7 @@ margin-top: 50px;
 
 const ButtonText = styled.Text`
 color : #FFFFFF;
-font-size : 20;
+font-size : 20px;
 font-weight : bold;
 `;
 
@@ -58,7 +58,9 @@ export const OneDisount = ( {navigation , name}) => {
         <Buttons >
             <ButtonIcon source={staticImage}/>
             <ButtonText>  {name} </ButtonText>
-            <ButtonRightArrow source={rightArrow}/>
+            
+            {/* <ButtonRightArrow source={rightArrow}/> */}
+            <Ionicons name="chevron-forward-outline" size={'20px'} color={'white'} />
         </Buttons>
 
    

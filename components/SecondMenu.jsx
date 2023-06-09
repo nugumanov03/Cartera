@@ -8,8 +8,6 @@ import { NavigationContainer } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
-const Tab  = createBottomTabNavigator()
-
 export const SecondMenu = () => {
     return (
     <NavigationContainer independent={true}>

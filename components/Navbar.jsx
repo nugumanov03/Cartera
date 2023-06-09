@@ -1,55 +1,36 @@
 import { StyleSheet, Text, View , TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const FirstMenuView = styled.View`
-    backgroundColor: #fff;
-    margin-top: 200px;
-    flexDirection: column;
-    alignItems: center;
-    justifyContent: center;
-    gap: 40px;
+
+const HeaderView = styled.View`
+
+    flexDirection : row;
+    gap: 20px;
+    justifyContent: flex-end;
 `
 
-const Button = styled.View`
-padding-top: 15px;
-background-color: #363853;
-height: 65px;
-width : 240px;
-border-radius: 15px;
 
-alignItems : center;
-justifyContent : 'center';
-`;
-
-
-const ButtonText = styled.Text`
-color : #FFFFFF;
-font-size : 20;
-font-weight : bold;
-`;
-
-const Title = styled.Text`
-font-size : 48px;
-color : #363853;
-font-weight : bold;
-`
-const Para = styled.Text`
-font-size : 16px;
-color : #363853;
+const Wrapper = styled.View`
+    ${'' /* flex : 1; */}
+    width : 100px;
+    flexDirection : row;
+    gap: 20px;
 `
 
 export const NavBarCom = ( {navigation }) => {
     return (
         
-        <FirstMenuView>
-            <Title>Cartera</Title>
-            <Para>С нами проще.</Para>
-                <TouchableOpacity onPress ={ () => navigation.navigate('MainMenuScreen')}>
-                    <Button >
-                    <ButtonText>Начать </ButtonText>
-                </Button>
+        <HeaderView>
+        <Wrapper>
+                <TouchableOpacity onPress ={ () => navigation.navigate('Notifications')}>
+                    <Ionicons name="notifications-outline" size={'20px'} color={'black'} />
                 </TouchableOpacity>
-        </FirstMenuView>
+                <TouchableOpacity onPress ={ () => navigation.navigate('settings')}>
+                    <Ionicons name="settings-outline" size={'20px'} color={'black'} />
+                </TouchableOpacity>
+            </Wrapper>
+        </HeaderView>
     );
 };

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View , TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
 
+import { NavBarCom } from './Navbar';
 
 const FirstMenuView = styled.View`
     backgroundColor: #fff;
@@ -25,7 +26,7 @@ justifyContent : 'center';
 
 const ButtonText = styled.Text`
 color : #FFFFFF;
-font-size : 20;
+font-size : 20px;
 font-weight : bold;
 `;
 
@@ -43,13 +44,8 @@ export const FirstMenuScreen = ( {navigation }) => {
     return (
         
         <FirstMenuView>
-            <Title>Cartera</Title>
-            <Para>С нами проще.</Para>
-                <TouchableOpacity onPress ={ () => setAuth}>
-                    <Button >
-                    <ButtonText>Начать </ButtonText>
-                </Button>
-                </TouchableOpacity>
+        <NavBarCom/>
+            <Title>Добро пожаловать!</Title>
         </FirstMenuView>
     );
 };

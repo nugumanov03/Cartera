@@ -3,6 +3,8 @@ import { FirstMenuScreen } from "../components/FirstMenu";
 import { SecondMenu } from "../components/SecondMenu";
 import { createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 import {DiscountScreen} from "./Discount/DiscountScreen"
 
@@ -19,10 +21,32 @@ export const Navigation = () => {
     <Tab.Navigator
     initialRouteName="Main"
     screenOptions={({route}) => ({
-        tabBarIcon : ({focused , color , size}) => {
-        
-        },
-        headerShown: false
+        tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Main') {
+              iconName = focused
+                ? 'wallet'
+                : 'wallet-outline';
+            } else if (route.name === 'DiscountScreen') {
+              iconName = focused ? 'heart' : 'heart-outline';
+            }
+            else if (route.name === 'Camera') {
+              iconName = focused ? 'scan' : 'scan-outline';
+            }
+            else if (route.name === 'Notifications') {
+              iconName = focused ? 'mail' : 'mail-outline';
+            }
+            else if (route.name === 'Avatar') {
+              iconName = focused ? 'options' : 'options-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+          headerShown: false
     })}
     
     

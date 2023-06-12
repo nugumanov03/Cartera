@@ -1,14 +1,15 @@
 package apiserver
 
-type ApiServer struct {}
+import (
+	"github.com/sirupsen/logrus"
+)
 
-
-type ApiServer struct {
+type APIServer struct {
 	config * Config
 	logger *logrus.Logger 
 }
-func New(config * Config) *ApiServer {
-	return &ApiServer{
+func New(config * Config) *APIServer {
+	return &APIServer{
 		config : config,
 		logger: logrus.New(),
 	}

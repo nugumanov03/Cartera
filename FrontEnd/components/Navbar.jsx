@@ -5,13 +5,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 const HeaderView = styled.View`
-
     flexDirection : row;
     gap: 20px;
     justifyContent: flex-end;
+
 `
-
-
 const Wrapper = styled.View`
     ${'' /* flex : 1; */}
     width : 100px;

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { FirstMenuScreen } from "../components/FirstMenu";
+import { FirstMenuScreen } from "./FirstMenu";
 // import { SecondMenu } from "../components/SecondMenu";
 import { createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import {MainMenuScreen} from '../screens/MainMenu'

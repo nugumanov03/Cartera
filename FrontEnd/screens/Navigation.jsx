@@ -55,7 +55,7 @@ export const Navigation = () => {
     <Tab.Screen name="Main" component={FirstMenuScreen}/>
     <Tab.Screen name="DiscountScreen" component={DiscountScreen}/>
     <Tab.Screen name="Camera" component={FirstMenuScreen}/>
-    <Tab.Screen name="Notifications" component={FirstMenuScreen}/>
+    <Tab.Screen name="Notifications" component={FirstMenuScreen} options={{ tabBarBadge: 3 }} />
     <Tab.Screen name="Avatar" component={AvatarScreen}/>
       
     </Tab.Navigator>

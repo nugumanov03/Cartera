@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/BurntSushi/toml"
-	"github.com/nugumanov03/Cartera/BackEnd/internal/app/apiserver"
+	"internal/app/apiserver"
 )
 
 var (

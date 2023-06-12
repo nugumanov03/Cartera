@@ -1,4 +1,4 @@
-package apiServer
+package apiserver
 
 type ApiServer struct {}
 
@@ -32,5 +32,5 @@ func (s *ApiServer) ConfigureLogger() error {
 
 	s.logger.SetLevel(level)
 
-	return nil
+	return nil  
 }

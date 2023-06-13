@@ -68,6 +68,7 @@ const rightArrow = require("../../public/img/rightArrow.png");
 export const DiscountScreenMain = ( {navigation }) => {
     const [isLoading , setIsLoading] = React.useState(true);
     const [ items ,  setItems ] = React.useState([{id: '123'}]);
+    const [ test ,  setTest ] = React.useState("123");
    
     const FetchPost = () => {
             setIsLoading(true);
@@ -77,16 +78,37 @@ export const DiscountScreenMain = ( {navigation }) => {
                 console.log("responce: " + data);
             }).catch(err => {
                 console.log(err)
-                alert('some errors api')
+                // alert('some errors api')r
+                alert(err)
             })
             .finally( () =>{
                 setIsLoading(false);
             })
         ;
     }
+    const TestBackend = () => {
+      setIsLoading(true);
+      axios
+      axios.get('http://192.168.0.105:8080/hello')
+      .then(({data}) => {
+          setTest(data);
+          console.log("responce: " + data);
+      }).catch(err => {
+          console.log(err)
+          alert(err)
+      })
+      .finally( () =>{
+          setIsLoading(false);
+      })
+  ;
+}
+
 
     // FetchPost();
-    React.useEffect(FetchPost ,[]);
+    React.useEffect(() =>{
+      FetchPost();
+      TestBackend();
+    } ,[]);
     // setItems([1 , 3 ,4 ]);
    if (isLoading){
     return (
@@ -114,6 +136,7 @@ export const DiscountScreenMain = ( {navigation }) => {
 
         // style={styles.StyleSheet}
       />
+      <Text> {test}</Text>
 
         </ButtonsWrapper>
         

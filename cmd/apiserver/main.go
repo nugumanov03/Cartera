@@ -2,8 +2,9 @@ package main
 
 import (
 	"flag"
+	"log"
 	"github.com/BurntSushi/toml"
-	"internal/app/apiserver"
+	"github.com/nugumanov03/Cartera/internal/app/apiserver"
 )
 
 var (
@@ -24,7 +25,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	s := apiServer.New(config)
+	s := apiserver.New(config)
 	if err := s.Start(); err != nil {
 		log.Fatal(err)
 	}

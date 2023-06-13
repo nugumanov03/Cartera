@@ -6,8 +6,8 @@ type Config struct {
 }
 
 func NewConfig() *Config   {
-	retunr &Config{
-		BindAddress: "8080", 
+	return &Config{
+		bindAddr: "8080", 
 		logLevel: "debug" ,
 	}
 }

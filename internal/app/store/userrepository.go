@@ -1,5 +1,8 @@
 package store
 
+import (
+	"github.com/nugumanov03/Cartera/internal/app/model"
+)
 
 type UserRepository struct {
 	store *Store
@@ -15,6 +18,18 @@ func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 	return u , nil
 }
 
+
+
 func (r *UserRepository)  FindByEmail(email string) (*model.User, error) {
-	return nil, nil
+	u := &model.User{}
+	if err := r.store.db.QueryRow("SELECT id , email , encrypted_password FROM users WHERE email =$1", email).Scan(
+		&u.ID , 
+		&u.Email , 
+		&u.Encrypted_Password,
+		); err != nil{
+			return nil , err
+		}
+
+
+	return u, nil
 }

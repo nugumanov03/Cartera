@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
-
-	"github.com/nugumanov03/Cartera/store"
+	// "store"
+	"github.com/nugumanov03/Cartera/internal/app/store"
 )
 
 type APIServer struct {

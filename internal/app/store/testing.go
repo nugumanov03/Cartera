@@ -17,7 +17,7 @@ func TestStore(t *testing.T , DataBaseURL string ) (*Store , func(...string)) {
 
 	return s, func(tables , ...string){
 		if len(tables) > 0 {
-			 if _ , err := s.db.Exec(fmt.Sprint("TRUNCATE %s CASCADE " , string,Join(tables ", "))); err != nil {
+			 if _ , err := s.db.Exec(fmt.Sprint("TRUNCATE %s CASCADE " , string.Join(tables, ", "))); err != nil {
 				t.Fatalf("Failed to ",err)
 			 }
 		}	

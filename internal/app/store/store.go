@@ -1,7 +1,14 @@
 package store
 
+import (
+	"database/sql"
+)
+
 type Store struct {
 	config *Config
+	db *sql.DB
+	UserRepository *User
+
 }
 
 func New(config *Config) *Store {
@@ -11,7 +18,7 @@ func New(config *Config) *Store {
 }
 
 func (s *Store) Open() error {
-	db , err := sql.Open("mysql", s.config.DataBaseURL)
+	db , err := sql.Open("postgres", s.config.DataBaseURL)
 	if err != nil { 
 		return err
 	}
@@ -25,7 +32,7 @@ func (s *Store) Open() error {
 }
 
 func (s *Store) Close(){
-	// return nil/
+	s.db.Close()
 }
 
 func (s *Store) User() *UserRepository {

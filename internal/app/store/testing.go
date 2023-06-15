@@ -2,9 +2,11 @@ package store
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 )
 // Test Store
+
 func TestStore(t *testing.T , DataBaseURL string ) (*Store , func(...string)) {
 	t.Helper()
 
@@ -15,10 +17,10 @@ func TestStore(t *testing.T , DataBaseURL string ) (*Store , func(...string)) {
 		t.Fatalf("Failed to open store: %v", err)
 	}
 
-	return s, func(tables , ...string){
+	return s, func(tables ...string){
 		if len(tables) > 0 {
-			 if _ , err := s.db.Exec(fmt.Sprint("TRUNCATE %s CASCADE " , string.Join(tables, ", "))); err != nil {
-				t.Fatalf("Failed to ",err)
+			 if _ , err := s.db.Exec(fmt.Sprintf("TRUNCATE %s CASCADE" , strings.Join(tables, ", "))); err != nil {
+				t.Fatal("Failed to ",err)
 			 }
 		}	
 		

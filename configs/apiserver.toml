@@ -2,4 +2,5 @@ bind_addr = ":8080"
 log_level = "debug"
 
 [store]
-data_base_url="host:localhost "
+data_base_url="[root[:]@]/Cartera_test[?sslmode=false]"
+# host=localhost dbname=Cartera_test sslmode=false"

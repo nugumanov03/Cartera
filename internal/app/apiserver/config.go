@@ -1,14 +1,18 @@
 package apiserver
  
+import (
+	"github.com/nugumanov03/Cartera/internal/app/store"
+)
+
 type Config struct {
-	bindAddr string `toml:"bind_address"`
+	bind_addr string `toml:"bind_address"`
 	logLevel string `toml:"log_level"`
-	Store *store.Store
+	Store *store.Config
 }
 
 func NewConfig() *Config   {
 	return &Config{
-		bindAddr: "8080", 
+		bind_addr: ":8080", 
 		logLevel: "debug" ,
 		Store : store.NewConfig(),
 	}

@@ -1,5 +1,11 @@
 package store_test
 
+import (
+	"testing"
+	"github.com/nugumanov03/Cartera/internal/app/store"
+	"github.com/nugumanov03/Cartera/internal/app/model"
+)
+
 func TestUserRepository_Create(t *testing.T) {
 	s , teardown := store.TestStore(t , databaseURL)
 	defer teardown("users")

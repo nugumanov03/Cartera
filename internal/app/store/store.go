@@ -2,23 +2,25 @@ package store
 
 import (
 	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
+	// "mysql"
 )
 
 type Store struct {
 	config *Config
 	db *sql.DB
-	UserRepository *User
+	userRepository *UserRepository
 
 }
 
 func New(config *Config) *Store {
-	return &Config{
+	return &Store{
 		config : config,
 	}
 }
 
 func (s *Store) Open() error {
-	db , err := sql.Open("postgres", s.config.DataBaseURL)
+	db , err := sql.Open("mysql", s.config.DataBaseURL)
 	if err != nil { 
 		return err
 	}

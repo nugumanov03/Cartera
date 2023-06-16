@@ -43,6 +43,7 @@ func (s *APIServer) Start() error {
 	}
 
 	s.logger.Info("Starting Server ...")
+
 	return http.ListenAndServe(":8080", s.router )
 }
 func (s *APIServer) configureStore() error {

@@ -2,5 +2,6 @@ bind_addr = ":8080"
 log_level = "debug"
 
 [store]
-data_base_url="[root[:]@]/Cartera_test[?sslmode=false]"
+# data_base_url="root@/cartera_test"
+data_base_url="host=localhost port=5431 dbname=postgres user=postgres password=s363790H sslmode=prefer connect_timeout=10"
 # host=localhost dbname=Cartera_test sslmode=false"

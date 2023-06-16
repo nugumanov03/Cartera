@@ -2,8 +2,8 @@ package store
 
 import (
 	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
-	// "mysql"
+
+	_ "github.com/lib/pq" // ...
 )
 
 type Store struct {
@@ -20,7 +20,7 @@ func New(config *Config) *Store {
 }
 
 func (s *Store) Open() error {
-	db , err := sql.Open("mysql", s.config.DataBaseURL)
+	db , err := sql.Open("postgres", s.config.DataBaseURL)
 	if err != nil { 
 		return err
 	}
@@ -38,7 +38,7 @@ func (s *Store) Close(){
 }
 
 func (s *Store) User() *UserRepository {
-	if s.userRepository == nil {
+	if s.userRepository != nil {
 		return s.userRepository
 	}
 

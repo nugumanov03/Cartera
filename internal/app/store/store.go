@@ -4,6 +4,7 @@ import (
 	"database/sql"
 
 	_ "github.com/lib/pq" // ...
+	// "github.com/nugumanov03/Cartera/internal/app/model"
 )
 
 type Store struct {
@@ -21,6 +22,7 @@ func New(config *Config) *Store {
 
 func (s *Store) Open() error {
 	db , err := sql.Open("postgres", s.config.DataBaseURL)
+	
 	if err != nil { 
 		return err
 	}
@@ -29,7 +31,10 @@ func (s *Store) Open() error {
 	}
 
 	s.db = db
-
+	// s.User().Create(&model.User{
+	// 	Email: "user@example.org",
+	// 	Encrypted_Password : "123",
+	// })
 	return nil
 }
 

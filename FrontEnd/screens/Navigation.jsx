@@ -10,7 +10,8 @@ import {DiscountScreen} from "./Discount/DiscountScreen"
 
 import { NavigationContainer } from "@react-navigation/native";
 import { AvatarScreen } from "./Avatar/AvatarScreen";
-
+import { MainScreen } from "./Main/MainScreen";
+import { MessageScreen} from "./Message/MessageScreen";
 
 const Tab  = createBottomTabNavigator()
 
@@ -24,20 +25,20 @@ export const Navigation = () => {
         tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Main') {
+            if (route.name === 'MainScreen') {
               iconName = focused
                 ? 'wallet'
                 : 'wallet-outline';
             } else if (route.name === 'DiscountScreen') {
               iconName = focused ? 'heart' : 'heart-outline';
             }
-            else if (route.name === 'Camera') {
+            else if (route.name === 'CameraScreen') {
               iconName = focused ? 'scan' : 'scan-outline';
             }
-            else if (route.name === 'Notifications') {
+            else if (route.name === 'MessageScreen') {
               iconName = focused ? 'mail' : 'mail-outline';
             }
-            else if (route.name === 'Avatar') {
+            else if (route.name === 'AvatarScreen') {
               iconName = focused ? 'options' : 'options-outline';
             }
 
@@ -52,11 +53,11 @@ export const Navigation = () => {
     
     >
 
-    <Tab.Screen name="Main" component={FirstMenuScreen}/>
-    <Tab.Screen name="DiscountScreen" component={DiscountScreen}/>
-    <Tab.Screen name="Camera" component={FirstMenuScreen}/>
-    <Tab.Screen name="Notifications" component={FirstMenuScreen} options={{ tabBarBadge: 3 }} />
-    <Tab.Screen name="Avatar" component={AvatarScreen}/>
+    <Tab.Screen name="MainScreen" component={MainScreen}  options={{ title: "Main" }}/>
+    <Tab.Screen name="DiscountScreen" component={DiscountScreen}  options={{  title: "Discount" }}/>
+    <Tab.Screen name="CameraScreen" component={FirstMenuScreen}  options={{  title: "Camera" }}/>
+    <Tab.Screen name="MessageScreen" component={MessageScreen} options={{ tabBarBadge: 3 , title: "Message" }} />
+    <Tab.Screen name="AvatarScreen" component={AvatarScreen}  options={{  title: "Avatar" }}/>
       
     </Tab.Navigator>
 

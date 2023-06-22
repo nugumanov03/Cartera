@@ -19,48 +19,90 @@ const ButtonsWrapper = styled.View`
 `
 const Buttons = styled.View`
 ${'' /* padding-top: 15px; */}
-background-color: #936EE3;
-height: 80px;
-width : 300px;
-border-radius: 15px;
+${'' /* background-color: #936EE3; */}
+height: 60px;
+width : 330px;
+${'' /* border-radius: 15px; */}
 
 flexDirection: row;
 alignItems : center;
 justifyContent : space-around;
 
 margin-top: 50px;
+margin-right: 55px;
+margin-left: 22px;
 `;
 
 
 const ButtonText = styled.Text`
-color : #FFFFFF;
-font-size : 20px;
-font-weight : bold;
+color : #000;
+font-size : 16px;
+font-weight : 500;
 `;
 
 const ButtonIcon = styled.Image`
-width: 50px;
-height: 50px;
+width: 61px;
+height: 61px;
 `;
 const ButtonRightArrow = styled.Image`
 width: 50px;
 height: 50px;
 `;
+const Title = styled.Text`
+    color : #000;
+    font-size: 16px;
+    font-weight : bold;
 
+`
 
-const staticImage = require("../../public/img/coffee.png");
-const rightArrow = require("../../public/img/rightArrow.png");
+const Row = styled.View`
+    width: 100%;
+    flexDirection: row;
+    justify-content: space-between;
+    align-items : center;
+    ${'' /* justify-content: flex-end; */}
+
+`
+const Right = styled.View`
+    flexDirection: row;
+    justify-content:    flex-start;
+    gap:15px;
+    align-items : center;
+    ${'' /* justify-content: flex-end; */}
+
+`
+const InfoWrap = styled.View`
+    flex-direction: column;
+    gap:10px;
+    justify-content: space-around;
+`
+const RightArrowImage = styled.Image`
+    width: 16px;
+    height: 16px;
+`
+
+const staticImage = require("../../public/img/starbucks_logo.png");
+const rightArrow = require("../../public/img/rightarrow_dis.png");
 export const OneDisount = ( {navigation , name}) => {
     return (
         
       
 
         <Buttons >
-            <ButtonIcon source={staticImage}/>
-            <ButtonText>  {name} </ButtonText>
+         <Row>
+
+        <Right>
+                <ButtonIcon source={staticImage}/>
+                <InfoWrap>
+                    <Title>{name} </Title>
+                    <ButtonText> 15%</ButtonText>
+                </InfoWrap>
+        </Right> 
             
             {/* <ButtonRightArrow source={rightArrow}/> */}
-            <Ionicons name="chevron-forward-outline" size={'20px'} color={'white'} />
+            <RightArrowImage source={rightArrow}/>
+            {/* <Ionicons name="chevron-forward-outline" size={'20px'} color={'white'} /> */}
+            </Row>
         </Buttons>
 
    

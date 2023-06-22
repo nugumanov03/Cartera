@@ -6,18 +6,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { NavigationContainer } from "@react-navigation/native";
 
-import {DiscountScreenMain} from "./Discount";
-import {FullDiscount} from "./FullDiscount";
+import {Message} from "./Message";
 
 const Stack = createNativeStackNavigator();
 
-export const DiscountScreen = () => {
+export const MessageScreen = () => {
     return (
+    
     <NavigationContainer independent={true}>
         
         <Stack.Navigator>
-            <Stack.Screen name="Discount" component={DiscountScreenMain} options={{ headerShown: false }} /> 
-            <Stack.Screen name="FullDiscount" component={FullDiscount} options={{title : "Main"}} /> 
+            <Stack.Screen name="Message" component={Message} options={{ headerShown: false }} /> 
+            {/* <Stack.Screen name="FullDiscount" component={FullDiscount} options={{title : "Main"}} />  */}
             {/* <Stack.Screen name="SecondMenu" component={SecondMenu} options={{title : "SecondMenu"}} />  */}
         </Stack.Navigator>
 

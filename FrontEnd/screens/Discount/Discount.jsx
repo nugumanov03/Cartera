@@ -8,16 +8,21 @@ import { OneDisount } from './OneDiscount';
 
 import React  from 'react';
 import { NavBarCom } from '../../components/Navbar';
+import {TopWidjet } from './TopWidjet'
 
-
+const DiscountScreenWrapper = styled.View`
+  ${'' /* flex : 1; */}
+  height: 100%;
+  padding-top:70px;
+  backgroundColor: #fff;
+`
 const Wrapper = styled.View`
-    backgroundColor: #fff;
-    flex : 1;
-    
+    gap:30px;
     flexDirection: column;
     alignItems: center;
     ${'' /* justifyContent: center; */}
-    gap: 40px;
+    ${'' /* gap: 40px; */}
+    ${'' /* margin:0; */}
 `
 const ButtonsWrapper = styled.View`
   flexDirection: column;
@@ -107,7 +112,7 @@ export const DiscountScreenMain = ( {navigation }) => {
     // FetchPost();
     React.useEffect(() =>{
       FetchPost();
-      TestBackend();
+      // TestBackend();
     } ,[]);
     // setItems([1 , 3 ,4 ]);
    if (isLoading){
@@ -121,10 +126,16 @@ export const DiscountScreenMain = ( {navigation }) => {
    
     // });
     return (
-       
+      <DiscountScreenWrapper>
+              <NavBarCom />
       <Wrapper>
-      
-      <ButtonsWrapper>
+         <Text> Special offers</Text>
+        <TopWidjet/>
+
+      {/* // <ButtonsWrapper> */}
+      <Text>
+      Top Discounts
+      </Text>
       <FlatList 
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={FetchPost} />}
         data={items}
@@ -136,10 +147,11 @@ export const DiscountScreenMain = ( {navigation }) => {
 
         // style={styles.StyleSheet}
       />
-      <Text> {test}</Text>
+       {/* <Text> {test}</Text> */}
 
-        </ButtonsWrapper>
+        {/* // </ButtonsWrapper> */}
         
         </Wrapper>
+        </DiscountScreenWrapper>
     );
 };

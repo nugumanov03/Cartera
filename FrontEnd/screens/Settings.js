@@ -44,11 +44,11 @@ color : #363853;
 export const SettingsScreen = ( {navigation }) => {
     return (
         <FirstMenuView>
-            <Title>Уведыю</Title>
-            <Para>да да да </Para>
+            <Title>Настройки</Title>
+            
                 <TouchableOpacity onPress ={ () => navigation.navigate('FirstMenuScreen')}>
                 <Button >
-                    <ButtonText>Иу </ButtonText>
+                    <ButtonText> кнопка тестов  </ButtonText>
                 </Button>
                 </TouchableOpacity>
                

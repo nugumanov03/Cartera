@@ -31,11 +31,11 @@ export const NavBarCom = ( {navigation }) => {
         
         <HeaderView>
         <Wrapper>
-                <TouchableOpacity onPress ={ () => navigation.navigate('Notifications')}>
+                <TouchableOpacity onPress ={ () => navigation.navigate('NotificationScreen')}>
                     {/* <Ionicons name="notifications-outline" size={'20px'} color={'black'} /> */}
                     <NotificationIcon size={32} fill={"#fff"} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress ={ () => navigation.navigate('settings')}>
+                <TouchableOpacity onPress ={ () => navigation.navigate('SettingsScreen')}>
                     {/* <Ionicons name="settings-outline" size={'20px'} color={'black'} /> */}
                     {/* <NavIcons source={settingsIcon} /> */}
                     <SettingsIcon size={32} fill={"#fff"} />

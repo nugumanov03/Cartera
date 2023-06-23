@@ -1,17 +1,16 @@
-
-import { FirstMenuScreen } from "../components/FirstMenu";
-import { SecondMenu } from "../components/SecondMenu";
 import { createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-import {DiscountScreen} from "./Discount/DiscountScreen"
 
 import { NavigationContainer } from "@react-navigation/native";
-import { AvatarScreen } from "./Avatar/AvatarScreen";
-import { MainScreen } from "./Main/MainScreen";
-import { MessageScreen} from "./Message/MessageScreen";
+
+import { MainScreen }     from "./Main/MainScreen";
+import { DiscountScreen } from "./Discount/DiscountScreen"
+import { CameraScreen }   from "./Camera/CameraScreen";
+import { MessageScreen}   from "./Message/MessageScreen";
+import { AvatarScreen }   from "./Avatar/AvatarScreen";
 
 const Tab  = createBottomTabNavigator()
 
@@ -55,7 +54,7 @@ export const Navigation = () => {
 
     <Tab.Screen name="MainScreen" component={MainScreen}  options={{ title: "Main" }}/>
     <Tab.Screen name="DiscountScreen" component={DiscountScreen}  options={{  title: "Discount" }}/>
-    <Tab.Screen name="CameraScreen" component={FirstMenuScreen}  options={{  title: "Camera" }}/>
+    <Tab.Screen name="CameraScreen" component={CameraScreen}  options={{  title: "Camera" }}/>
     <Tab.Screen name="MessageScreen" component={MessageScreen} options={{ tabBarBadge: 3 , title: "Message" }} />
     <Tab.Screen name="AvatarScreen" component={AvatarScreen}  options={{  title: "Avatar" }}/>
       

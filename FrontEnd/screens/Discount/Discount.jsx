@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View , TouchableOpacity , FlatList , ActivityIndicator , RefreshControl} from 'react-native';
+import { StyleSheet, ScrollView , Text, View , TouchableOpacity , FlatList , ActivityIndicator , RefreshControl} from 'react-native';
 
 import axios from 'axios';
 import styled from 'styled-components/native'
@@ -136,7 +136,10 @@ export const DiscountScreenMain = ( {navigation }) => {
       <Text>
       Top Discounts
       </Text>
-      <FlatList 
+      
+      <FlatList
+      vertical
+      bounces={false}
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={FetchPost} />}
         data={items}
         renderItem={ ({item}) => 
@@ -147,6 +150,7 @@ export const DiscountScreenMain = ( {navigation }) => {
 
         // style={styles.StyleSheet}
       />
+
        {/* <Text> {test}</Text> */}
 
         {/* // </ButtonsWrapper> */}

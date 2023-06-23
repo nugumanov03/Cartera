@@ -21,7 +21,7 @@ const Buttons = styled.View`
 ${'' /* padding-top: 15px; */}
 ${'' /* background-color: #936EE3; */}
 height: 60px;
-width : 330px;
+width : 80%;
 ${'' /* border-radius: 15px; */}
 
 flexDirection: row;
@@ -85,9 +85,6 @@ const staticImage = require("../../public/img/starbucks_logo.png");
 const rightArrow = require("../../public/img/rightarrow_dis.png");
 export const OneDisount = ( {navigation , name}) => {
     return (
-        
-      
-
         <Buttons >
          <Row>
 

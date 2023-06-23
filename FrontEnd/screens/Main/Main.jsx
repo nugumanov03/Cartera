@@ -80,12 +80,14 @@ const studentCard = require('../..//public/img/StudentCardMain.jpeg');
 const Dis1 = require('../..//public/img/Dis1.png');
 const Dis2 = require('../..//public/img/Dis2.png');
 const Dis3 = require('../..//public/img/Dis3.png');
+
+
 export const Main = ( {navigation }) => {
   
     return (
         <MainMenuWrapper>
         <FirstMenuView>
-            <NavBarCom />
+            <NavBarCom navigation={navigation}  />
             <Center>
                 <StudentCardIMG source={studentCard}/>
             </Center>
@@ -98,7 +100,7 @@ export const Main = ( {navigation }) => {
 
                <WrapperDiscount>
                 <Dicount>
-                    <TouchableOpacity>
+                    <TouchableOpacity  onPress ={ () => navigation.navigate('NotificationScreen')}>
                         <DisImage source={Dis1}/>
                     </TouchableOpacity>
                 </Dicount>

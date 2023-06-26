@@ -48,7 +48,7 @@ export const SettingsScreen = ( {navigation }) => {
             
                 <TouchableOpacity onPress ={ () => navigation.navigate('FirstMenuScreen')}>
                 <Button >
-                    <ButtonText> Change() </ButtonText>
+                    <ButtonText> Abother change () </ButtonText>
                 </Button>
                 </TouchableOpacity>
                

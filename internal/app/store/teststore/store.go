@@ -1,30 +1,27 @@
 package teststore
 
 import (
- 
 	"github.com/nugumanov03/Cartera/internal/app/model"
 	"github.com/nugumanov03/Cartera/internal/app/store"
 )
 
 type Store struct {
-	
-	userRepository *UserRepository
-
+	UserRepository *UserRepository
 }
 
 func New() *Store {
 	return &Store{}
 }
- 
+
 func (s *Store) User() store.UserRepository {
-	if s.userRepository != nil {
-		return s.userRepository
+	if s.UserRepository != nil {
+		return s.UserRepository
 	}
 
-	s.userRepository = &UserRepository{
+	s.UserRepository = &UserRepository{
 		store: s,
 		users: make(map[string]*model.User),
 	}
 
-	return s.userRepository
+	return s.UserRepository
 }

@@ -1,85 +1,34 @@
 package apiserver
 
 import (
-	"io"
-	"encoding/json"
+	"database/sql"
 	"net/http"
-	"github.com/gorilla/mux"
-	"github.com/sirupsen/logrus"
-	// "store"
-	"github.com/nugumanov03/Cartera/internal/app/store"
+
+	_ "github.com/lib/pq" //
+
+	"github.com/nugumanov03/Cartera/internal/app/store/sqlstore"
 )
 
-type APIServer struct {
-	config 	*Config
-	logger 	*logrus.Logger 
-	router 	*mux.Router
-	store 	*store.Store
-}
-func New(config * Config) *APIServer {
-	return &APIServer{
-		config : config,
-		logger: logrus.New(),
-		router: mux.NewRouter(),
-		// store: store.New(),
-	}
-}
-
-func (s *APIServer) Start() error {
-	// if err := s.ConfigureLogger(); err != nil {
-	// 	return err
-	// }
-	s.logger.Info("Starting api server...")
-
-
-	s.ConfigureRouter()
-
-	if err := s.ConfigureLogger(); err != nil {
-		return err
-	}
-	
-	if err := s.configureStore(); err != nil {
-		return err
-	}
-
-	s.logger.Info("Starting Server ...")
-
-	return http.ListenAndServe(":8080", s.router )
-}
-func (s *APIServer) configureStore() error {
-	st:= store.New(s.config.Store)
-	if err := st.Open(); err != nil {
-		return err
-	}
-
-	s.store = st
-	return nil
-}
-
-func (s *APIServer) ConfigureLogger() error {
-
-	level , err := logrus.ParseLevel(s.config.logLevel)
+func Start(config *Config) error {
+	db, err := newDB(config.databaseURL)
 	if err != nil {
 		return err
 	}
+	defer db.Close()
 
-	s.logger.SetLevel(level)
+	store := sqlstore.New(db)
+	srv := NewServer(store)
 
-	return nil  
+	return http.ListenAndServe(config.bind_addr, srv)
 }
-
-func (s *APIServer) ConfigureRouter () {
-	s.router.HandleFunc("/hello" , s.handleHello())
-}
-
-func (s *APIServer ) handleHello() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request){
-		data := "123"
-		s.logger.Info("Server have responded..")
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusCreated)
-		json.NewEncoder(w).Encode(data)
-		io.WriteString( w , "hello")
-		// w.Write(respBody)
+func newDB(databaseURL string) (*sql.DB, error) {
+	db, err := sql.Open("postgres", "host=localhost port=5431 dbname=cartera_test user=postgres password=s363790H sslmode=disable connect_timeout=10")
+	if err != nil {
+		return nil, err
 	}
+	if err := db.Ping(); err != nil {
+		return nil, err
+	}
+
+	return db, nil
 }

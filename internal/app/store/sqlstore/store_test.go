@@ -1,10 +1,9 @@
 package sqlstore_test
 
-
 import (
+	"fmt"
 	"os"
 	"testing"
-	"fmt"
 )
 
 var (

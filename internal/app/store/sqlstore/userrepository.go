@@ -2,6 +2,9 @@ package sqlstore
 
 import (
 	// "fmt"
+	"database/sql"
+
+	"github.com/nugumanov03/Cartera/internal/app/store"
 	"github.com/nugumanov03/Cartera/internal/app/model"
 )
 
@@ -28,7 +31,7 @@ func (r *UserRepository) Create(u *model.User) error {
 
 func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 	u := &model.User{}
-	// fmt.Print("good 3.1\n")
+
 	if err := r.store.db.QueryRow(
 		"SELECT id, email, encrypted_password FROM users WHERE email = $1",
 		email,
@@ -37,9 +40,12 @@ func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 		&u.Email,
 		&u.Encrypted_Password,
 	); err != nil {
-		// fmt.Print("good 3.2\n")
+		if err == sql.ErrNoRows {
+			return nil, store.ErrRecordNotFound
+		}
+
 		return nil, err
 	}
-	// fmt.Print("good 3.3\n")
+
 	return u, nil
 }

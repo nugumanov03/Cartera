@@ -4,31 +4,29 @@ import (
 	"database/sql"
 
 	_ "github.com/lib/pq" // ...
-	// "github.com/nugumanov03/Cartera/internal/app/model"
+
+	"github.com/nugumanov03/Cartera/internal/app/store"
 )
 
 type Store struct {
-	
-	db *sql.DB
-	userRepository *UserRepository
-
+	db             *sql.DB
+	UserRepository *UserRepository
 }
 
 func New(db *sql.DB) *Store {
 	return &Store{
-		db : db,
+		db: db,
 	}
 }
- 
 
-func (s *Store) User() *UserRepository {
-	if s.userRepository != nil {
-		return s.userRepository
+func (s *Store) User() store.UserRepository {
+	if s.UserRepository != nil {
+		return s.UserRepository
 	}
 
-	s.userRepository = &UserRepository{
+	s.UserRepository = &UserRepository{
 		store: s,
 	}
 
-	return s.userRepository
+	return s.UserRepository
 }

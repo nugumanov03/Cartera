@@ -75,6 +75,7 @@ func (s *APIServer) ConfigureRouter () {
 func (s *APIServer ) handleHello() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request){
 		data := "123"
+		s.logger.Info("Server have responded..")
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
 		json.NewEncoder(w).Encode(data)

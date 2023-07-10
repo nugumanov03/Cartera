@@ -1,0 +1,16 @@
+FrontEnd:
+-
+-
+-
+-
+
+Backend:
+-
+-
+-
+-
+
+
+Todo:
+-android studio
+

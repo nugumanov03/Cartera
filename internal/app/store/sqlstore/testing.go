@@ -1,0 +1,29 @@
+package sqlstore
+
+import (
+	// "fmt"
+	"strings"
+	"testing"
+	"database/sql"
+)
+// Test Store
+
+func TestDB(t *testing.T , DataBaseURL string ) (*sql.DB , func(...string)) {
+	t.Helper()
+
+	db , err := sql.Open("postgres" , DataBaseURL)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if err := db.Ping(); err != nil {
+		t.Fatal(err)
+	}
+
+	return db, func(tables ...string){
+		if len(tables) > 0 {
+			db.Exec("TRUNCATE %s CASCADE", strings.Join(tables,", "))
+		}
+		db.Close()
+	}
+}

@@ -22,6 +22,7 @@ func Start(config *Config) error {
 	return http.ListenAndServe(config.bind_addr, srv)
 }
 func newDB(databaseURL string) (*sql.DB, error) {
+
 	db, err := sql.Open("postgres", "host=localhost port=5431 dbname=cartera_test user=postgres password=s363790H sslmode=disable connect_timeout=10")
 	if err != nil {
 		return nil, err

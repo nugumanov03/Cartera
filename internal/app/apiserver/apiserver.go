@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"net/http"
 
+	"github.com/gorilla/sessions"
 	_ "github.com/lib/pq" //
 
 	"github.com/nugumanov03/Cartera/internal/app/store/sqlstore"
@@ -17,7 +18,8 @@ func Start(config *Config) error {
 	defer db.Close()
 
 	store := sqlstore.New(db)
-	srv := NewServer(store)
+	sessionStore := sessions.NewCookieStore([]byte(config.session_key))
+	srv := NewServer(store, sessionStore)
 
 	return http.ListenAndServe(config.bind_addr, srv)
 }

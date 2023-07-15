@@ -2,26 +2,38 @@ package apiserver
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
+
 	// "github.com/sirupsen/logrus"
 
 	"github.com/nugumanov03/Cartera/internal/app/model"
 	"github.com/nugumanov03/Cartera/internal/app/store"
 )
 
+var (
+	errIncorectEmailOrPassword = errors.New("incorect email or password")
+)
+var (
+	session_name = "Arman_s"
+)
+
 type server struct {
 	router *mux.Router
 	// logger *logrus.Logger
-	store store.Store
+	store        store.Store
+	sessionStore sessions.Store
 }
 
-func NewServer(store store.Store) *server {
+func NewServer(store store.Store, sessionStore sessions.Store) *server {
 	s := &server{
 		router: mux.NewRouter(),
 		// logger: logrus.New(),
-		store: store,
+		store:        store,
+		sessionStore: sessionStore,
 	}
 
 	s.ConfigureRouter()
@@ -49,17 +61,22 @@ func (s *server) handleSessionsCreate() http.HandlerFunc {
 		}
 
 		u, err := s.store.User().FindByEmail(req.Email)
-
-		u := &model.User{
-			Email:    req.Email,
-			Password: req.Password,
+		if err != nil || !u.ComparePassword(req.Password) {
+			s.error(w, r, http.StatusUnauthorized, errIncorectEmailOrPassword)
 		}
-		if err := s.store.User().Create(u); err != nil {
-			s.error(w, r, http.StatusUnprocessableEntity, err)
+
+		session, err := s.sessionStore.Get(r, session_name)
+		if err != nil {
+			s.error(w, r, http.StatusInternalServerError, err)
+		}
+
+		session.Values["user_id"] = u.ID
+
+		if err := s.sessionStore.Save(r, w, session); err != nil {
+			s.error(w, r, http.StatusInternalServerError, err)
 			return
 		}
-		u.Sanitize()
-		s.respond(w, r, http.StatusCreated, u)
+		s.respond(w, r, http.StatusOK, u)
 	}
 }
 func (s *server) handleUsersCreate() http.HandlerFunc {

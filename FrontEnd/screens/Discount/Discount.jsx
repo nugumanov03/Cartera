@@ -47,15 +47,7 @@ const ButtonText = styled.Text`
 color : #FFFFFF;
 font-size : 20px;
 font-weight : bold;
-`;
-
-const ButtonIcon = styled.Image`
-width: 50px;
-height: 50px;
-`;
-const ButtonRightArrow = styled.Image`
-width: 50px;
-height: 50px;
+font-family : "Quicksand";
 `;
 
 const Center = styled.View`
@@ -64,9 +56,6 @@ flexDirection: column;
 justifyContent : center;
 alignItems: center;
 `
-
-const staticImage = require("../../public/img/coffee.png");
-const rightArrow = require("../../public/img/rightArrow.png");
 
 // https://6481de9629fa1c5c50323753.mockapi.io/api/dev/discounts
 
@@ -130,18 +119,17 @@ export const DiscountScreenMain = ( {navigation }) => {
               <NavBarCom />
       <Wrapper>
          <Text> Special offers</Text>
-        <TopWidjet/>
+        {/* <TopWidjet/> */}
 
       {/* // <ButtonsWrapper> */}
-      <Text>
-      Top Discounts
-      </Text>
+     
       
       <FlatList
       vertical
       bounces={false}
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={FetchPost} />}
         data={items}
+        ListHeaderComponent={TopWidjet}
         renderItem={ ({item}) => 
         <TouchableOpacity onPress ={ () => navigation.navigate('FullDiscount' , {id : item.id , name : item.name })}>
             <OneDisount name={item.name}/>

@@ -14,8 +14,10 @@ const HeaderView = styled.View`
 `
 const Wrapper = styled.View`
     ${'' /* flex : 1; */}
-    width : 100px;
+    width : 50px; 
+    ${'' /* Was 100px */}
     flexDirection : row;
+    ${'' /* justifyContent: flex-end; */}
     gap: 20px;
 `
 
@@ -31,10 +33,9 @@ export const NavBarCom = ( {navigation }) => {
         
         <HeaderView>
         <Wrapper>
-                <TouchableOpacity onPress ={ () => navigation.navigate('NotificationScreen')}>
-                    {/* <Ionicons name="notifications-outline" size={'20px'} color={'black'} /> */}
+                {/* <TouchableOpacity onPress ={ () => navigation.navigate('NotificationScreen')}>
                     <NotificationIcon size={32} fill={"#fff"} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity onPress ={ () => navigation.navigate('SettingsScreen')}>
                     {/* <Ionicons name="settings-outline" size={'20px'} color={'black'} /> */}
                     {/* <NavIcons source={settingsIcon} /> */}

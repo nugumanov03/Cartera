@@ -1,6 +1,7 @@
 
 import { StyleSheet, Text, View , TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
+import { WebView } from 'react-native-webview';
 
 const MainMenuWrapper = styled.View`
     backgroundColor: #fff;
@@ -19,8 +20,11 @@ export const Camera = ( {navigation }) => {
     return (
         <MainMenuWrapper>
             <FirstMenuView>
-                <Text>WebView HERE</Text>
+                
             </FirstMenuView>
+            <WebView 
+          source={{ uri: 'https://reactnative.dev/' }} 
+        />
         </MainMenuWrapper>
     );
 };

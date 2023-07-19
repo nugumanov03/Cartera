@@ -1,6 +1,7 @@
 
-import { StyleSheet, Text, View , TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View , TouchableOpacity , FlatList , RefreshControl } from 'react-native';
 import styled from 'styled-components/native'
+import React from 'react'
 
 import { NavBarCom } from '../..//components/Navbar'
 import { OneMessage } from './OneMessage';
@@ -27,6 +28,10 @@ const MessageContainer = styled.View`
 `
 
 export const Message = ( {navigation }) => {
+    const [isLoading , setIsLoading] = React.useState(true);
+    items = [
+        '1' , '2' , '3'
+    ]
     return (
         <MessageMainScreen>
       
@@ -37,12 +42,24 @@ export const Message = ( {navigation }) => {
                     Messages
                 </Text>
 
+                <FlatList
+      vertical
+      bounces={false}
+        refreshControl={<RefreshControl refreshing={isLoading} />}
+        data={items}
+        renderItem={ ({item}) => 
+        <TouchableOpacity onPress ={ () => navigation.navigate('FullMessage' , {id : item.id , name : item.name })}>
+            <OneMessage />
+        </TouchableOpacity>
+      } 
 
-        <MessageContainer>
+        // style={styles.StyleSheet}
+      />
+        {/* <MessageContainer>
             <OneMessage />
             <OneMessage />
             <OneMessage />
-    </MessageContainer>
+    </MessageContainer> */}
 
     
 

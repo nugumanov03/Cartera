@@ -72,8 +72,8 @@ const Center = styled.View`
 
 const TitleText = styled.Text`
     font-size:25px;
-    ${'' /* font-weight: bold; */}
-    ${'' /* font-family: 'Quicksand-Medium'; */}
+    font-weight: bold;
+    font-family: 'Quicksand';
 `
 
 const studentCard = require('../..//public/img/StudentCardMain.jpeg');
@@ -81,9 +81,11 @@ const Dis1 = require('../..//public/img/Dis1.png');
 const Dis2 = require('../..//public/img/Dis2.png');
 const Dis3 = require('../..//public/img/Dis3.png');
 
-
 export const Main = ( {navigation }) => {
-  
+    // const [fontsLoaded] = useFonts({
+    //     'Quicksand': require('../../assets/fonts/Quicksand.ttf'),
+    //   });
+    
     return (
         <MainMenuWrapper>
         <FirstMenuView>
@@ -94,9 +96,9 @@ export const Main = ( {navigation }) => {
               
             {/* <DiscountWidget> */}
             <TitleText>
-                Top Discount
+                Top Discount 
             </TitleText>
-            <Text style={{ fontSize: 27 }}>Quicksand-Medium</Text>
+            <Text style={{ fontSize: 27 , fontFamily: 'Quicksand', fontWeight : "400"}}>Quicksand-Medsdsdsium</Text>
 
                <WrapperDiscount>
                 <Dicount>
@@ -119,4 +121,5 @@ export const Main = ( {navigation }) => {
         </FirstMenuView>
         </MainMenuWrapper>
     );
+    
 };

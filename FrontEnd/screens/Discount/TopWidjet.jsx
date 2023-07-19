@@ -32,11 +32,22 @@ const Bottom = styled.Image`
 export const TopWidjet = ( {navigation , name}) => {
     return (
         <Wrapper>
+         <Text>
+      Top Discounts
+      </Text>
             <Row>
+            <TouchableOpacity>
                 <LeftTop source={starbucks}/>
+                </TouchableOpacity>
+                <TouchableOpacity>
                 <RightTop source={lanzhou}/>
+                </TouchableOpacity>
+
             </Row>
+            <TouchableOpacity>
                 <Bottom source={pizzahut} />
+                </TouchableOpacity>
+
         </Wrapper>
    
     );

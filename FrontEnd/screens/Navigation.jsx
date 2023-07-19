@@ -13,7 +13,7 @@ import { MessageScreen}   from "./Message/MessageScreen";
 import { AvatarScreen }   from "./Avatar/AvatarScreen";
 
 const Tab  = createBottomTabNavigator()
-
+var va = 5
 export const Navigation = () => {
     return (
     <NavigationContainer>
@@ -54,9 +54,9 @@ export const Navigation = () => {
 
     <Tab.Screen name="MainScreen" component={MainScreen}  options={{ title: "Main" }}/>
     <Tab.Screen name="DiscountScreen" component={DiscountScreen}  options={{  title: "Discount" }}/>
-    <Tab.Screen name="CameraScreen" component={CameraScreen}  options={{  title: "Camera" }}/>
     <Tab.Screen name="MessageScreen" component={MessageScreen} options={{ tabBarBadge: 3 , title: "Message" }} />
-    <Tab.Screen name="AvatarScreen" component={AvatarScreen}  options={{  title: "Avatar" }}/>
+    <Tab.Screen name="CameraScreen" component={CameraScreen}  options={{  title: "Camera" }}/>
+    {/* <Tab.Screen name="AvatarScreen" component={AvatarScreen}  options={{  title: "Avatar" }}/> */}
       
     </Tab.Navigator>
 

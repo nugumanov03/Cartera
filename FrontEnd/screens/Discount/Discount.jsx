@@ -13,7 +13,7 @@ import {TopWidjet } from './TopWidjet'
 const DiscountScreenWrapper = styled.View`
   ${'' /* flex : 1; */}
   height: 100%;
-  padding-top:70px;
+  padding-top:50px;
   backgroundColor: #fff;
 `
 const Wrapper = styled.View`
@@ -116,9 +116,9 @@ export const DiscountScreenMain = ( {navigation }) => {
     // });
     return (
       <DiscountScreenWrapper>
-              <NavBarCom />
+              <NavBarCom title='Discounts' />
       <Wrapper>
-         <Text> Special offers</Text>
+         {/* <Text> Special offers</Text> */}
         {/* <TopWidjet/> */}
 
       {/* // <ButtonsWrapper> */}

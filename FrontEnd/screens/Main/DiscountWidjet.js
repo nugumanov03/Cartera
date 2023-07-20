@@ -7,9 +7,6 @@ import * as Font from 'expo-font';
 
 
 import { NavBarCom } from '../..//components/Navbar'
-import {NewsWidjet } from './NewsWidjet'
-import {DiscountWidjet } from './DiscountWidjet'
-import {CardWidjet } from './CardWidjet'
 
 const MainMenuWrapper = styled.View`
     backgroundColor: #fff;
@@ -56,6 +53,10 @@ const WrapperDiscount = styled.View`
     justifyContent: space-evenly;
 
 `
+const Wrapper = styled.View`
+    gap: 20px;
+    ${'' /* alignItems: center; */}
+`
 const Dicount = styled.View`
 ${'' /* padding: 10px; */}
     ${'' /* background: red; */}
@@ -73,6 +74,7 @@ const Center = styled.View`
 `
 
 
+
 const TitleText = styled.Text`
     font-size:25px;
     font-weight: bold;
@@ -84,21 +86,41 @@ const Dis1 = require('../..//public/img/Dis1.png');
 const Dis2 = require('../..//public/img/Dis2.png');
 const Dis3 = require('../..//public/img/Dis3.png');
 
-export const Main = ( {navigation }) => {
+export const   DiscountWidjet = ( {navigation }) => {
     // const [fontsLoaded] = useFonts({
     //     'Quicksand': require('../../assets/fonts/Quicksand.ttf'),
     //   });
     
     return (
-        <MainMenuWrapper>
-        <FirstMenuView>
-            <NavBarCom navigation={navigation} title='Cartera'  />
-            
-            <CardWidjet/>
-            <DiscountWidjet />
-            <NewsWidjet/>
-        </FirstMenuView>
-        </MainMenuWrapper>
+        <Wrapper>
+
+          
+<Center>
+                <TitleText>
+                Top Discount 
+                </TitleText>
+            </Center>
+               
+       
+        <WrapperDiscount>
+        
+        <Dicount>
+            <TouchableOpacity  onPress ={ () => navigation.navigate('NotificationScreen')}>
+                <DisImage source={Dis1}/>
+            </TouchableOpacity>
+        </Dicount>
+        <Dicount>
+            <TouchableOpacity>
+                <DisImage source={Dis2}/>
+            </TouchableOpacity>
+        </Dicount>
+        <Dicount>
+        <TouchableOpacity>
+                <DisImage source={Dis3}/>
+            </TouchableOpacity>
+        </Dicount>
+       </WrapperDiscount>
+</Wrapper>
     );
     
 };

@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import {DiscountScreenMain} from "./Discount";
 import {FullDiscount} from "./FullDiscount";
+import Scroll from "./Scroll";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ export const DiscountScreen = () => {
         
         <Stack.Navigator>
             <Stack.Screen name="Discount" component={DiscountScreenMain} options={{ headerShown: false }} /> 
-            <Stack.Screen name="FullDiscount" component={FullDiscount} options={{title : "Main"}} /> 
+            <Stack.Screen name="FullDiscount" component={Scroll} options={{title : "Main"}} /> 
             {/* <Stack.Screen name="SecondMenu" component={SecondMenu} options={{title : "SecondMenu"}} />  */}
         </Stack.Navigator>
 

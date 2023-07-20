@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { View , TouchableOpacity } from 'react-native'
 import { useAuth } from './context/useAuth'
+import { useSignIn } from './context/useSignIn'
 
 import styled from 'styled-components/native'
 // import Button from '../UI/Button'
@@ -52,6 +53,7 @@ const AuthForm = () => {
 	const [error, setError] = useState('')
 
 	const { isAuth, setIsAuth } = useAuth()
+	const { isSignIn, setisSignIn } = useSignIn()
 
 	const authHandler = async () => {
         console.log('Ok 1');
@@ -66,9 +68,6 @@ const AuthForm = () => {
 
 			// await AsyncStorage.setItem('token', 'w23eefq234Ad')
 			setIsAuth(false)
-		// } else {
-		// 	setError('Заполните все поля!')
-		// }
 	}
 
 	return (

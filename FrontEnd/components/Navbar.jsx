@@ -8,13 +8,14 @@ import NotificationIcon from '../..//FrontEnd/public/img/notificationIcon.svg'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 const HeaderView = styled.View`
     flexDirection : row;
-    gap: 20px;
-    justifyContent: flex-end;
+    ${'' /* gap: 30px; */}
+    justifyContent:  space-between;
+    margin: 20px;
 
 `
 const Wrapper = styled.View`
     ${'' /* flex : 1; */}
-    width : 50px; 
+    ${'' /* width : 50px;  */}
     ${'' /* Was 100px */}
     flexDirection : row;
     ${'' /* justifyContent: flex-end; */}
@@ -25,13 +26,20 @@ const NavIcons = styled.View`
     width: 32px;
     height: 32px;
 `
+const TextTitle = styled.Text`
+font-size:25px;
+fontFamily : 'Quicksand';
+fontWeight : bold;
+`
 const notificationIcon = require("../public/img/notificationIcon.svg")
 // const settingsIcon = require("../public/img/settingsIcon.svg")
 
-export const NavBarCom = ( {navigation }) => {
+export const NavBarCom = ( {navigation , title}) => {
+    // console.log(title)
     return (
         
         <HeaderView>
+            <TextTitle>{title}</TextTitle>
         <Wrapper>
                 {/* <TouchableOpacity onPress ={ () => navigation.navigate('NotificationScreen')}>
                     <NotificationIcon size={32} fill={"#fff"} />

@@ -6,6 +6,7 @@ import styled from 'styled-components/native'
 const MessageWraper = styled.View`
 
     ${'' /* background: red; */}
+    ${'' /* flex: 1; */}
     width: 100%;
     flexDirection: row;
     justify-content: space-between;
@@ -51,6 +52,7 @@ const InfoLeft = styled.View`
 
 `
 const OneMessageView = styled.View`
+    width: 100%;
  flexDirection: column;
  justify-content: center;
  align-items: center;

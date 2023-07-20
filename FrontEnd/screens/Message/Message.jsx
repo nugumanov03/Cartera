@@ -7,6 +7,7 @@ import { NavBarCom } from '../..//components/Navbar'
 import { OneMessage } from './OneMessage';
 
 const MessageMainScreen = styled.View`
+${'' /* flex:1; */}
     backgroundColor: #fff;
     padding-top: 50px;
     height:100%;
@@ -16,7 +17,9 @@ const MessageMainScreen = styled.View`
     gap: 40px; */}
 `
 const FirstMenuView = styled.View`
+    flex: 1;
     flexDirection: column;
+    alignItems: center;
     gap:30px;
 `
 const MessageContainer = styled.View`
@@ -28,19 +31,17 @@ const MessageContainer = styled.View`
 `
 
 export const Message = ( {navigation }) => {
-    const [isLoading , setIsLoading] = React.useState(true);
+    const [isLoading , setIsLoading] = React.useState(false);
     items = [
         '1' , '2' , '3'
     ]
     return (
         <MessageMainScreen>
       
+         <NavBarCom title='Message'/>
         <FirstMenuView>
-         <NavBarCom />
 
-                <Text>
-                    Messages
-                </Text>
+                
 
                 <FlatList
       vertical

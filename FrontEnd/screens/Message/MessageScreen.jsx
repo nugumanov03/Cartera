@@ -18,7 +18,7 @@ export const MessageScreen = () => {
         
         <Stack.Navigator>
             <Stack.Screen name="Message" component={Message} options={{ headerShown: false }} /> 
-            <Stack.Screen name="FullMessage" component={FullMessage} options={{title : "Main"}} /> 
+            <Stack.Screen name="FullMessage" component={FullMessage} options={{}} /> 
             {/* <Stack.Screen name="SecondMenu" component={SecondMenu} options={{title : "SecondMenu"}} />  */}
         </Stack.Navigator>
 

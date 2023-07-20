@@ -28,13 +28,22 @@ const Bottom = styled.Image`
     width: 371px;
     height: 90px;
 `
+const Center = styled.View`
+${'' /* flex : 1; */}
+flexDirection: column;
+justifyContent : center;
+alignItems: center;
+`
 
 export const TopWidjet = ( {navigation , name}) => {
     return (
         <Wrapper>
-         <Text>
-      Top Discounts
-      </Text>
+        {/* <Center>
+            <Text>
+            Special offers
+        </Text>
+        </Center> */}
+        
             <Row>
             <TouchableOpacity>
                 <LeftTop source={starbucks}/>

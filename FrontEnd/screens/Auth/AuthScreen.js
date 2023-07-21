@@ -1,22 +1,20 @@
 import React, { useContext, useState  ,useRef , useEffect} from 'react'
 import { View ,Image, TouchableOpacity , TextInput  , Text , Animated , ScrollView , TouchableWithoutFeedback} from 'react-native'
-// import { useAuth } from '../context/useAuth'
+
 import { useSignIn } from '../..//context/useSignIn'
 
 import styled from 'styled-components/native'
 import {signInContext} from '../../context/signInContext';
 
+import axios from 'axios'
 
 
-// import React, {useState} from 'react';
 import {Alert, Modal, StyleSheet, Pressable, } from 'react-native';
 
 
+import {LoadIndicator} from '../../components/LoadIndicator'
 import {Navigation } from '..//Navigation'
-// import Button from '../UI/Button'
-// import Error from '../UI/Error'
-// import AsyncStorage from '@react-native-async-storage/async-storage'
-// import Field from '../UI/Field'
+
 
 const FirstMenuView = styled.View`
     backgroundColor: #fff;
@@ -53,6 +51,13 @@ gap: 40px;
 marginRight: 30px;
 marginLeft: 30px;
 `;
+const Center = styled.View`
+flexDirection: column;
+alignItems : center;
+justifyContent : center;
+
+marginTop: 30px;
+`;
 
 
 const ButtonText = styled.Text`
@@ -72,8 +77,9 @@ font-size : 16px;
 color : #363853;
 `
 const TextTitle = styled.Text`
-font-size : 25px;
+font-size : 18px;
 color : #363853;
+font-family: 'Quicksand';
 `
 
 const Input = styled.TextInput`
@@ -92,50 +98,110 @@ const Input = styled.TextInput`
     ${'' /* max-height : 250px;asd */}
 `
 export const AuthMain = () => {
-	// const [email, setEmail] = useState('')
-	// const [password, setPassword] = useState('')
-	// const [error, setError] = useState('')
+    const [isLoading, setIsLoading] = React.useState(false);
 
-	// const { isAuth, setIsAuth } = useAuth()
-	// const { isSignIn, setisSignIn } = useSignIn()
     const [ isSignIn , setisSignIn] = React.useState(true);
     const [valueEmail, onChangeTextEmail] = React.useState('my_kbtu@kbtu.kz');
     const [valueID, onChangeTextID] = React.useState('21B01002');
+   
     const authHandler2 = async () => {
-        setModalVisible(!modalVisible)
         console.log('Ok 2' , isSignIn);
         console.log(valueEmail);
         console.log(valueID);
+        const nameRegex = new RegExp(/^[\w]+@kbtu.kz$/i);
+        const IDregEx = new RegExp(/^[\d]{2}[\w][\d]{6}$/i);
+        if (nameRegex.test(valueEmail)) {
+            console.log("checking fo kbtu mail was ok")
+        }else {
+            console.log("checking fo kbtu mail wasn't ok")
+        }
+        if (IDregEx.test(valueID)) {
+            console.log("checking fo ID mail was ok")
+        }else {
+            console.log("checking fo ID mail wasn't ok")
+        }
 		if (valueEmail && valueID) {
-			if (valueEmail !== 'test@test.ru') {
+			if (valueEmail !== '12345') {
+                // setIsLoading(false)
+                setModalVisible(!modalVisible)
 				return  console.log('Не верный Email')
 			}
 
 			if (valueID !== '12345') {
+                // setIsLoading(false)
+                setModalVisible(!modalVisible)
 				return  console.log('Не верный пароль')
 			}
 
 			// await AsyncStorage.setItem('token', 'w23eefq234Ad')
-			setisSignIn(false)
-		} else {
-			setError('Заполните все поля!')
-		}
+			// setisSignIn(false)
+            // setIsLoading(true)
+            console.log('Here')
+           
+            setIsLoading(true);
+            axios.post('http://localhost:8080/sessions',{
+                email:"user1@example.com",
+                password:"password"
+            })
+            .then(({data}) => {
+                // setItems(data);
+                console.log("responce: " + data.id + data.email);
+            }).catch(err => {
+                console.log(err)
+                // alert('some errors api')r
+                alert(err)
+            })
+            .finally( () =>{
+                // setIsLoading(false);
+                console.log('Here3')
+            })
+        ;
+        console.log('Here2')
+    
+
+
+            setTimeout(()=>{setIsLoading(false)
+                setisSignIn(false)} , 2000)
+            
+		} 
+        // setIsLoading(false)
 	}   
     const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+    const fadeAnim2 = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+    const fadeAnim3 = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+    const OpacityAnimanate = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
 
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: -100,
-      duration: 1000,
+    useEffect(() => {
+      Animated.timing(fadeAnim, {
+        toValue: -100,
+        duration: 1000,
+        useNativeDriver: true,
+      }).start( () => {console.log("End Animation 1")});
+    Animated.timing(OpacityAnimanate, {
+      toValue: 1,
+      duration: 2000,
       useNativeDriver: true,
-    }).start( () => {console.log("End Animation")});
-  }, [fadeAnim]);
-  const [modalVisible, setModalVisible] = useState(false);
+    }).start( () => {console.log("End Animation 2")});
+  Animated.timing(fadeAnim2, {
+    toValue: -50,
+    duration: 1000,
+    useNativeDriver: true,
+  }).start( () => {console.log("End Animation 3")})
+  Animated.timing(fadeAnim3, {
+    toValue: 50,
+    duration: 1000,
+    useNativeDriver: true,
+  }).start( () => {console.log("End Animation 4")});
+}
+  , [fadeAnim] ,OpacityAnimanate, fadeAnim2 ,fadeAnim3);
+    const [modalVisible, setModalVisible] = useState(false);
+  
 	return (
         <signInContext.Provider value={{ isSignIn , setisSignIn }}>
         { isSignIn ? 
         
 		<FirstMenuView>
+        <LoadIndicator isLoading={isLoading} />
         <Modal 
           animationType="slide"
           transparent={true}
@@ -153,8 +219,11 @@ export const AuthMain = () => {
             >
               <TouchableWithoutFeedback>
                 <View style={styles.modalContainer}>
-                  <Text>Here you put the content of your modal. </Text> 
-                  <Image source={require('../../assets/icons8-успех.gif')} />
+                  <Text>Неверный логин или айди</Text> 
+                  <Center>
+                  <Image source={require('../../assets/icons8-ошибка.gif')} />
+                  </Center>
+                 
                 </View>
               </TouchableWithoutFeedback>
             </ScrollView>
@@ -167,12 +236,26 @@ export const AuthMain = () => {
         // marginTop: fadeAnim, // Bind opacity to animated value
       }}>
     <Title>Cartera</Title>
-    </Animated.View>
+    
+      </Animated.View>
       <ContentWrap>
-
-      <TextTitle>
+      <Animated.View // Special animatable View
+      style={{
+        transform : [{translateY: fadeAnim2}],
+        opacity: OpacityAnimanate
+        // marginTop: fadeAnim, // Bind opacity to animated value
+      }}>
+    <TextTitle>
         Войдите в ваше единную почту и наслаждайтесь пользованием!
       </TextTitle>
+    
+      </Animated.View>
+      <Animated.View // Special animatable View
+      style={{
+        opacity: OpacityAnimanate,
+        // transform: [{translateY: fadeAnim3}]
+        // marginTop: fadeAnim, // Bind opacity to animated value
+      }}>
             {/* <Title>Cartera</Title> */}
             <Row>
             <Para>Email</Para>
@@ -199,14 +282,22 @@ export const AuthMain = () => {
         placeholderTextColor="#E0E0E0"
       />
             </Row>
+            </Animated.View>
             {/* <Para>С нами проще.</Para> */}
+            <Animated.View // Special animatable View
+      style={{
+        // opacity: OpacityAnimanate,
+        transform: [{translateY: fadeAnim3}]
+        // marginTop: fadeAnim, // Bind opacity to animated value
+      }}>
                 <TouchableOpacity onPress ={ () => authHandler2()}>
                     <Button >
                     <ButtonText>Войти </ButtonText>
                 </Button>
                 </TouchableOpacity>
+                </Animated.View>
                 </ContentWrap>
-                
+               
             </FirstMenuView>
             
             :   <Navigation/>
@@ -216,16 +307,23 @@ export const AuthMain = () => {
 }
 
 const styles = StyleSheet.create({
+    lottie: {
+        width: 25,
+        height: 25,
+    },
     container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     // marginTop: 202,
-    backgroundColor: '#F194FF',
+    // backgroundColor: '#F194FF',
+    // opacity: 6,
     padding: 30 ,
   },
   scrollModal: {
     margin: 20,
+    marginTop: 250,
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 55,

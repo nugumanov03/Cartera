@@ -4,10 +4,6 @@ import { useAuth } from './context/useAuth'
 import { useSignIn } from './context/useSignIn'
 
 import styled from 'styled-components/native'
-// import Button from '../UI/Button'
-// import Error from '../UI/Error'
-// import AsyncStorage from '@react-native-async-storage/async-storage'
-// import Field from '../UI/Field'
 
 const FirstMenuView = styled.View`
     backgroundColor: #fff;
@@ -27,6 +23,8 @@ border-radius: 15px;
 
 alignItems : center;
 justifyContent : 'center';
+
+marginTop: 120px;
 `;
 
 

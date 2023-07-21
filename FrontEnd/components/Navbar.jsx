@@ -27,8 +27,8 @@ const NavIcons = styled.View`
     height: 32px;
 `
 const TextTitle = styled.Text`
-font-size:25px;
-fontFamily : 'Quicksand';
+font-size:28px;
+fontFamily : 'QuicksandB';
 fontWeight : bold;
 `
 const notificationIcon = require("../public/img/notificationIcon.svg")

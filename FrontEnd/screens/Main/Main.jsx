@@ -96,7 +96,8 @@ export const Main = ( {navigation }) => {
             
             <CardWidjet/>
             <DiscountWidjet />
-            <NewsWidjet/>
+         
+            {/* <NewsWidjet/> */}
         </FirstMenuView>
         </MainMenuWrapper>
     );

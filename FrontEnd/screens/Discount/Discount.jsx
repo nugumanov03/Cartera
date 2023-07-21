@@ -8,6 +8,7 @@ import { OneDisount } from './OneDiscount';
 
 import React  from 'react';
 import { NavBarCom } from '../../components/Navbar';
+import { LoadIndicator } from '../../components/LoadIndicator';
 import {TopWidjet } from './TopWidjet'
 
 const DiscountScreenWrapper = styled.View`
@@ -101,21 +102,15 @@ export const DiscountScreenMain = ( {navigation }) => {
     // FetchPost();
     React.useEffect(() =>{
       FetchPost();
-      // TestBackend();
     } ,[]);
-    // setItems([1 , 3 ,4 ]);
    if (isLoading){
     return (
-        <Center>
-              <ActivityIndicator size={'small'} />
-        </Center>
+      <LoadIndicator isLoading={isLoading}/>
       )
    }
-
-   
-    // });
     return (
       <DiscountScreenWrapper>
+        
               <NavBarCom title='Discounts' />
       <Wrapper>
          {/* <Text> Special offers</Text> */}
@@ -135,14 +130,7 @@ export const DiscountScreenMain = ( {navigation }) => {
             <OneDisount name={item.name}/>
         </TouchableOpacity>
       } 
-
-        // style={styles.StyleSheet}
       />
-
-       {/* <Text> {test}</Text> */}
-
-        {/* // </ButtonsWrapper> */}
-        
         </Wrapper>
         </DiscountScreenWrapper>
     );

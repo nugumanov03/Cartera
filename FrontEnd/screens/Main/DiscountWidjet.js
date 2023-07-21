@@ -120,6 +120,25 @@ export const   DiscountWidjet = ( {navigation }) => {
             </TouchableOpacity>
         </Dicount>
        </WrapperDiscount>
+
+       <WrapperDiscount>
+        
+        <Dicount>
+            <TouchableOpacity  onPress ={ () => navigation.navigate('NotificationScreen')}>
+                <DisImage source={Dis1}/>
+            </TouchableOpacity>
+        </Dicount>
+        <Dicount>
+            <TouchableOpacity>
+                <DisImage source={Dis2}/>
+            </TouchableOpacity>
+        </Dicount>
+        <Dicount>
+        <TouchableOpacity>
+                <DisImage source={Dis3}/>
+            </TouchableOpacity>
+        </Dicount>
+       </WrapperDiscount>
 </Wrapper>
     );
     

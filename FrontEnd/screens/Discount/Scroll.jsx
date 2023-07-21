@@ -4,11 +4,14 @@ import {BANNER_H} from './constants';
 import TopNavigation from './TopNavigation';
 import DummyText from './DummyText';
 
-const Scroll = () => {
+import NaviHeader from '../../components/NaviHeader'
+
+const Scroll = ( {navigation }) => {
   const scrollA = useRef(new Animated.Value(0)).current;
   return (
     <View>
-      <TopNavigation title="Home" scrollA={scrollA} />
+      <NaviHeader/>
+      {/* <TopNavigation title="Home" scrollA={scrollA} /> */}
       <Animated.ScrollView
         // onScroll={e => console.log(e.nativeEvent.contentOffset.y)}
         onScroll={Animated.event(

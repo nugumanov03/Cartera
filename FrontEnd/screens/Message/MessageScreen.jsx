@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import {Message} from "./Message";
 import {FullMessage} from "./FullMessage";
 
+
 const Stack = createNativeStackNavigator();
 
 export const MessageScreen = () => {
@@ -18,7 +19,7 @@ export const MessageScreen = () => {
         
         <Stack.Navigator>
             <Stack.Screen name="Message" component={Message} options={{ headerShown: false }} /> 
-            <Stack.Screen name="FullMessage" component={FullMessage} options={{}} /> 
+            <Stack.Screen name="FullMessage" component={FullMessage} options={{ headerShown: false}} /> 
             {/* <Stack.Screen name="SecondMenu" component={SecondMenu} options={{title : "SecondMenu"}} />  */}
         </Stack.Navigator>
 

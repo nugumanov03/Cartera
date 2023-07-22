@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
-import { StyleSheet, Text, View , TouchableOpacity } from 'react-native';
+import {ScrollView, StyleSheet, Text, View , TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
+import NaviHeaders from "../../components/NaviHeader";
 
 
-
-
+const FullMessageWr = styled.View`
+    flexDirection:column;
+    flex: 1;
+`;
 const Wrapper = styled.View`
     backgroundColor: #fff;
     flex : 1;
@@ -117,9 +120,12 @@ export const FullMessage = ( {navigation , route }) => {
    
 
     return (
-        
+        <FullMessageWr>
+        <NaviHeaders navigation={navigation} title={productTitle}/>
+            
       <Wrapper>
-           
+      {/* <ScrollView> */}
+           {/* <NaviHeaders navigation={navigation} title={route.name} /> */}
             
             <MessageWrap>
                 <MessageIcon>
@@ -172,7 +178,8 @@ export const FullMessage = ( {navigation , route }) => {
                         </TimeSector>
                     </MessageMain>
             </MessageWrap>
-            
+            {/* </ScrollView> */}
         </Wrapper>
+        </FullMessageWr>
     );
 };

@@ -90,7 +90,7 @@ export default function App() {
     <AuthContext.Provider value={{ isAuth , setIsAuth }}  >
     {/* <AuthForm />  */}
       {/* {isAuth ? <AuthMain /> : <Navigation />} */}
-      {!isAuth ? <AuthForm /> : !true ? <AuthMain /> : <Navigation />}
+      {isAuth ? <AuthForm /> : true ? <AuthMain /> : <Navigation />}
       <StatusBar />
     </AuthContext.Provider>
   )

@@ -10,7 +10,10 @@ const Scroll = ( {navigation }) => {
   const scrollA = useRef(new Animated.Value(0)).current;
   return (
     <View>
-      <NaviHeader/>
+      <NaviHeader 
+      navigation={navigation}
+        title="Top Navigation"
+      />
       {/* <TopNavigation title="Home" scrollA={scrollA} /> */}
       <Animated.ScrollView
         // onScroll={e => console.log(e.nativeEvent.contentOffset.y)}

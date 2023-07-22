@@ -10,6 +10,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const Header = styled.View`
     ${'' /* flex: 1; */}
+    transparent: true;
     justifyContent:  center;
     marginTop: 50px;
 
@@ -21,8 +22,10 @@ const Center = styled.View`
 const Wrap = styled.View`
     ${'' /* width: 100%; */}
     flexDirection : row;
-    ${'' /* justifyContent: flex-end; */}
-    gap: 140px;
+    marginRight:30px;
+    marginLeft:30px;
+    padding-bottom: 20px;
+    gap: 102px;
 `
 
 const LeftSide = styled.View`
@@ -49,7 +52,7 @@ export default  NaviHeader = ( {navigation , title}) => {
                 <Wrap>
                 <TouchableOpacity
                 onPress={ ()=> {
-                    navigation.goback()
+                    navigation.goBack()
                 }}>
                 <LeftSide>
                     <ImgBac source={imgBack} />
@@ -57,7 +60,7 @@ export default  NaviHeader = ( {navigation , title}) => {
                 </TouchableOpacity>
                 <Center>
                     <Title>
-                        Main
+                        {title}
                     </Title>
                 </Center>
                 <View></View>

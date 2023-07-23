@@ -110,6 +110,7 @@ const rightArrow = require("../../public/img/rightArrow.png");
 const MessageAvatar = require('../../public/img/MessageTest.png')
 
 export const FullMessage = ( {navigation , route }) => {
+    // here API's 
     const { id , name } = route.params;
     const productTitle = "KaspiGold"
     useEffect( () => {

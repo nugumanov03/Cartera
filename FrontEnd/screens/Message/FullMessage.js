@@ -111,6 +111,8 @@ const MessageAvatar = require('../../public/img/MessageTest.png')
 
 export const FullMessage = ( {navigation , route }) => {
     // here API's 
+
+    // some organizations work done 
     const { id , name } = route.params;
     const productTitle = "KaspiGold"
     useEffect( () => {

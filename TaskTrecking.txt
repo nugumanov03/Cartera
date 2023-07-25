@@ -10,7 +10,5 @@ Backend:
 -
 -
 
-
-Todo:
--android studio
+Also commit to assign and define some organizations day 
 

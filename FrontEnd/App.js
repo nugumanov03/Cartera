@@ -85,13 +85,14 @@ export default function App() {
       />
     );
   }
-
+  // Geeting some changes and so on 
   return (
     <AuthContext.Provider value={{ isAuth , setIsAuth }}  >
     {/* <AuthForm />  */}
       {/* {isAuth ? <AuthMain /> : <Navigation />} */}
       {isAuth ? <AuthForm /> : true ? <AuthMain /> : <Navigation />}
       <StatusBar />
+     
     </AuthContext.Provider>
   )
 };

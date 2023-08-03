@@ -56,11 +56,11 @@ export const Navigation = () => {
     <Tab.Screen name="DiscountScreen" component={DiscountScreen}  options={{  title: "Discount" }}/>
     <Tab.Screen name="MessageScreen" component={MessageScreen} options={{ tabBarBadge: 3 , title: "Message" }} />
     <Tab.Screen name="CameraScreen" component={CameraScreen}  options={{  title: "Camera" }}/>
-    {/* <Tab.Screen name="AvatarScreen" component={AvatarScreen}  options={{  title: "Avatar" }}/> */}
+    <Tab.Screen name="AvatarScreen" component={AvatarScreen}  options={{  title: "Avatar" }}/>
       
     </Tab.Navigator>
 
-        
+         
     </NavigationContainer>
 
     

@@ -38,7 +38,7 @@ export const Message = ( {navigation }) => {
     return (
         <MessageMainScreen>
       
-         <NavBarCom title='Message'/>
+         <NavBarCom title='Message' navigation={navigation}/>
         <FirstMenuView>
 
                 

@@ -9,7 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import {DiscountScreenMain} from "./Discount";
 import {FullDiscount} from "./FullDiscount";
 import Scroll from "./Scroll";
-
+import { SettingsScreen} from "../Settings/Settings"
 const Stack = createNativeStackNavigator();
 
 const ButtonBack = styled.Image`
@@ -42,6 +42,7 @@ export const DiscountScreen = () => {
         
         
         }} /> 
+             <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{title : "Настройки"}} /> 
             {/* <Stack.Screen name="SecondMenu" component={SecondMenu} options={{title : "SecondMenu"}} />  */}
         </Stack.Navigator>
 

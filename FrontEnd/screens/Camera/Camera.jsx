@@ -16,7 +16,7 @@ export const Camera = ( {navigation }) => {
         <MainMenuWrapper>
 
             <WebView 
-          source={{ uri: 'https://reactnative.dev/' }} />
+          source={{ uri: 'https://almavalley.kz/' }} />
 
         
         </MainMenuWrapper>

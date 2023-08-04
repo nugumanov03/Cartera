@@ -111,7 +111,7 @@ export const DiscountScreenMain = ( {navigation }) => {
     return (
       <DiscountScreenWrapper>
         
-              <NavBarCom title='Discounts' />
+              <NavBarCom title='Discounts' navigation={navigation}/>
       <Wrapper>
          {/* <Text> Special offers</Text> */}
         {/* <TopWidjet/> */}

@@ -7,5 +7,12 @@ type DiscountRepository struct {
 }
 
 func (r *DiscountRepository) Create(d *model.Discount) error {
-	return nil
+	if err := d.ValidateCreate(); err != nil {
+		return err
+	}
+
+	return r.store.db.QueryRow(
+		"INSERT INTO discounts (titel, description, img) VALUES ($1, $2, $3)",
+		&d.Titel, &d.Description, &d.Image,
+	).Scan(&d.ID)
 }

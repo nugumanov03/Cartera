@@ -1,7 +1,7 @@
 bind_addr = ":8080"
 log_level = "debug"
-data_base_url="host=localhost port=5431 dbname=cartera_test user=postgres password=s363790H sslmode=disable connect_timeout=10"
-data="host=localhost port=5435 dbname=cartera_test user=postgres password=s363790H sslmode=disable connect_timeout=10"
+data_base_url="host=localhost port=5432 dbname=test user=postgres password=229211 sslmode=disable connect_timeout=10"
+data="host=localhost port=5432 dbname=test user=postgres password=229211 sslmode=disable connect_timeout=10"
 session_key= "Arman123123"
 
 # data_base_url="root@/cartera_test"

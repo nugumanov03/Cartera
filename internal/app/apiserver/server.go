@@ -76,6 +76,8 @@ func (s *server) ConfigureRouter() {
 	s.router.HandleFunc("/users", s.handleUsersCreate()).Methods("POST")
 	s.router.HandleFunc("/sessions", s.handleSessionsCreate()).Methods("POST")
 
+	s.router.HandleFunc("/discount-create", s.handleDiscountsCreate()).Methods("POST")
+
 	// /private/***
 	private := s.router.PathPrefix("/private").Subrouter()
 	private.Use(s.authenticateUser)
@@ -168,6 +170,36 @@ func (s *server) handleUsersCreate() http.HandlerFunc {
 	}
 
 }
+
+func (s *server) handleDiscountsCreate() http.HandlerFunc {
+	type request struct {
+		Titel       string `json:"titel"`
+		Description string `json:"description"`
+		Img         string `json:"img"`
+	}
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		req := &request{}
+		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
+			s.error(w, r, http.StatusBadRequest, err)
+			return
+		}
+
+		d := &model.Discount{
+			Titel:       req.Titel,
+			Description: req.Description,
+			Image:       req.Img,
+		}
+
+		if err := s.store.Discount().Create(d); err != nil {
+			s.error(w, r, http.StatusUnprocessableEntity, err)
+			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+	}
+}
+
 func (s *server) error(w http.ResponseWriter, r *http.Request, code int, err error) {
 	s.respond(w, r, code, map[string]string{"error": err.Error()})
 }

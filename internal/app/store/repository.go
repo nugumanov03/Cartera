@@ -7,3 +7,7 @@ type UserRepository interface {
 	Find(int) (*model.User, error)
 	FindByEmail(email string) (*model.User, error)
 }
+
+type DiscountRepository interface {
+	Create(*model.Discount) error
+}

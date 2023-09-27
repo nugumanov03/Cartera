@@ -10,4 +10,5 @@ type UserRepository interface {
 
 type DiscountRepository interface {
 	Create(*model.Discount) error
+	Get() ([]*model.Discount, error)
 }

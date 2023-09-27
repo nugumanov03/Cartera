@@ -77,6 +77,7 @@ func (s *server) ConfigureRouter() {
 	s.router.HandleFunc("/sessions", s.handleSessionsCreate()).Methods("POST")
 
 	s.router.HandleFunc("/discount-create", s.handleDiscountsCreate()).Methods("POST")
+	s.router.HandleFunc("/discounts-get", s.handleDiscountsGet()).Methods("GET")
 
 	// /private/***
 	private := s.router.PathPrefix("/private").Subrouter()
@@ -194,6 +195,28 @@ func (s *server) handleDiscountsCreate() http.HandlerFunc {
 		if err := s.store.Discount().Create(d); err != nil {
 			s.error(w, r, http.StatusUnprocessableEntity, err)
 			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+	}
+}
+
+func (s *server) handleDiscountsGet() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		res, err := s.store.Discount().Get()
+		if err != nil {
+			s.error(w, r, http.StatusBadRequest, err)
+			return
+		}
+
+		for _, e := range res {
+			list, err := json.Marshal(e)
+			if err != nil {
+				s.error(w, r, http.StatusBadRequest, err)
+				return
+			}
+
+			w.Write(list)
 		}
 
 		w.WriteHeader(http.StatusCreated)

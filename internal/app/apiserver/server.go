@@ -174,7 +174,7 @@ func (s *server) handleUsersCreate() http.HandlerFunc {
 
 func (s *server) handleDiscountsCreate() http.HandlerFunc {
 	type request struct {
-		Titel       string `json:"titel"`
+		Title       string `json:"titel"`
 		Description string `json:"description"`
 		Img         string `json:"img"`
 	}
@@ -187,7 +187,7 @@ func (s *server) handleDiscountsCreate() http.HandlerFunc {
 		}
 
 		d := &model.Discount{
-			Titel:       req.Titel,
+			Title:       req.Title,
 			Description: req.Description,
 			Image:       req.Img,
 		}

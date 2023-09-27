@@ -13,7 +13,7 @@ func (r *DiscountRepository) Create(d *model.Discount) error {
 
 	return r.store.db.QueryRow(
 		"INSERT INTO discounts (titel, description, img) VALUES ($1, $2, $3)",
-		&d.Titel, &d.Description, &d.Image,
+		&d.Title, &d.Description, &d.Image,
 	).Scan(&d.ID)
 }
 
@@ -29,7 +29,7 @@ func (r *DiscountRepository) Get() ([]*model.Discount, error) {
 
 	for rows.Next() {
 		d := &model.Discount{}
-		if err := rows.Scan(&d.ID, &d.Titel, &d.Description, &d.Image); err != nil {
+		if err := rows.Scan(&d.ID, &d.Title, &d.Description, &d.Image); err != nil {
 			return nil, err
 		}
 

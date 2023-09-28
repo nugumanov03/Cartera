@@ -79,7 +79,8 @@ func (s *server) ConfigureRouter() {
 	s.router.HandleFunc("/discount-create", s.handleDiscountsCreate()).Methods("POST")
 	s.router.HandleFunc("/discounts-get", s.handleDiscountsGet()).Methods("GET")
 
-	s.router.HandleFunc("/news-create", s.handleNewCreate()).Methods("POST")
+	s.router.HandleFunc("/news-create", s.handleNewsCreate()).Methods("POST")
+	s.router.HandleFunc("/news-get", s.HandleNewsGet()).Methods("GET")
 
 	// /private/***
 	private := s.router.PathPrefix("/private").Subrouter()
@@ -212,20 +213,20 @@ func (s *server) handleDiscountsGet() http.HandlerFunc {
 		}
 
 		for _, e := range res {
-			list, err := json.Marshal(e)
+			d, err := json.Marshal(e)
 			if err != nil {
 				s.error(w, r, http.StatusBadRequest, err)
 				return
 			}
 
-			w.Write(list)
+			w.Write(d)
 		}
 
 		w.WriteHeader(http.StatusCreated)
 	}
 }
 
-func (s *server) handleNewCreate() http.HandlerFunc {
+func (s *server) handleNewsCreate() http.HandlerFunc {
 	type Request struct {
 		Title       string `json:"title"`
 		Img         string `json:"img"`
@@ -255,6 +256,26 @@ func (s *server) handleNewCreate() http.HandlerFunc {
 		}
 
 		w.WriteHeader(http.StatusCreated)
+	}
+}
+
+func (s *server) HandleNewsGet() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		news, err := s.store.News().Get()
+		if err != nil {
+			s.error(w, r, http.StatusBadGateway, err)
+			return
+		}
+
+		for _, e := range news {
+			n, err := json.Marshal(e)
+			if err != nil {
+				s.error(w, r, http.StatusBadGateway, err)
+				return
+			}
+
+			w.Write(n)
+		}
 	}
 }
 

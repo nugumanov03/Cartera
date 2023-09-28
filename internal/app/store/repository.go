@@ -15,4 +15,5 @@ type DiscountRepository interface {
 
 type NewsRepository interface {
 	Create(*model.News) error
+	Get() ([]*model.News, error)
 }

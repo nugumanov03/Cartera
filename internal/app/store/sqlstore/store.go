@@ -13,6 +13,7 @@ type Store struct {
 	UserRepository     *UserRepository
 	DiscountRepository *DiscountRepository
 	NewsRepository     *NewsRepository
+	MessageRepository  *MessageRepository
 }
 
 func New(db *sql.DB) *Store {
@@ -55,4 +56,16 @@ func (s *Store) News() store.NewsRepository {
 	}
 
 	return s.NewsRepository
+}
+
+func (s *Store) Message() store.MessageRepository {
+	if s.MessageRepository != nil {
+		return s.MessageRepository
+	}
+
+	s.MessageRepository = &MessageRepository{
+		store: s,
+	}
+
+	return s.MessageRepository
 }

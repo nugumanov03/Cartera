@@ -17,3 +17,8 @@ type NewsRepository interface {
 	Create(*model.News) error
 	Get() ([]*model.News, error)
 }
+
+type MessageRepository interface {
+	Create(*model.Message) error
+	Get() ([]*model.Message, error)
+}

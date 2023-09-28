@@ -76,11 +76,14 @@ func (s *server) ConfigureRouter() {
 	s.router.HandleFunc("/users", s.handleUsersCreate()).Methods("POST")
 	s.router.HandleFunc("/sessions", s.handleSessionsCreate()).Methods("POST")
 
-	s.router.HandleFunc("/discount-create", s.handleDiscountsCreate()).Methods("POST")
+	s.router.HandleFunc("/discounts-create", s.handleDiscountsCreate()).Methods("POST")
 	s.router.HandleFunc("/discounts-get", s.handleDiscountsGet()).Methods("GET")
 
 	s.router.HandleFunc("/news-create", s.handleNewsCreate()).Methods("POST")
 	s.router.HandleFunc("/news-get", s.HandleNewsGet()).Methods("GET")
+
+	s.router.HandleFunc("/messages-create", s.HandleMessageCreate()).Methods("POST")
+	s.router.HandleFunc("/messages-get", s.HandleGetMessages()).Methods("GET")
 
 	// /private/***
 	private := s.router.PathPrefix("/private").Subrouter()
@@ -260,6 +263,30 @@ func (s *server) HandleNewsGet() http.HandlerFunc {
 
 			w.Write(n)
 		}
+	}
+}
+
+func (s *server) HandleMessageCreate() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		m := &model.Message{}
+
+		if err := json.NewDecoder(r.Body).Decode(m); err != nil {
+			s.error(w, r, http.StatusBadRequest, err)
+			return
+		}
+
+		if err := s.store.Message().Create(m); err != nil {
+			s.error(w, r, http.StatusBadGateway, err)
+			return
+		}
+
+		w.WriteHeader(http.StatusCreated)
+	}
+}
+
+func (s *server) HandleGetMessages() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+
 	}
 }
 

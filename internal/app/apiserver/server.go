@@ -227,27 +227,11 @@ func (s *server) handleDiscountsGet() http.HandlerFunc {
 }
 
 func (s *server) handleNewsCreate() http.HandlerFunc {
-	type Request struct {
-		Title       string `json:"title"`
-		Img         string `json:"img"`
-		Description string `json:"description"`
-		PreviewDesc string `json:"preview_desc"`
-		FastLink    string `json:"fast_link"`
-	}
-
 	return func(w http.ResponseWriter, r *http.Request) {
-		req := &Request{}
-		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
+		m := &model.News{}
+		if err := json.NewDecoder(r.Body).Decode(m); err != nil {
 			s.error(w, r, http.StatusBadRequest, err)
 			return
-		}
-
-		m := &model.News{
-			Title:       req.Title,
-			Img:         req.Img,
-			Description: req.Description,
-			PreviewDesc: req.PreviewDesc,
-			FastLink:    req.FastLink,
 		}
 
 		if err := s.store.News().Create(m); err != nil {

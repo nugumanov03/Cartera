@@ -79,6 +79,8 @@ func (s *server) ConfigureRouter() {
 	s.router.HandleFunc("/discount-create", s.handleDiscountsCreate()).Methods("POST")
 	s.router.HandleFunc("/discounts-get", s.handleDiscountsGet()).Methods("GET")
 
+	s.router.HandleFunc("/news-create", s.handleNewCreate()).Methods("POST")
+
 	// /private/***
 	private := s.router.PathPrefix("/private").Subrouter()
 	private.Use(s.authenticateUser)
@@ -217,6 +219,39 @@ func (s *server) handleDiscountsGet() http.HandlerFunc {
 			}
 
 			w.Write(list)
+		}
+
+		w.WriteHeader(http.StatusCreated)
+	}
+}
+
+func (s *server) handleNewCreate() http.HandlerFunc {
+	type Request struct {
+		Title       string `json:"title"`
+		Img         string `json:"img"`
+		Description string `json:"description"`
+		PreviewDesc string `json:"preview_desc"`
+		FastLink    string `json:"fast_link"`
+	}
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		req := &Request{}
+		if err := json.NewDecoder(r.Body).Decode(req); err != nil {
+			s.error(w, r, http.StatusBadRequest, err)
+			return
+		}
+
+		m := &model.News{
+			Title:       req.Title,
+			Img:         req.Img,
+			Description: req.Description,
+			PreviewDesc: req.PreviewDesc,
+			FastLink:    req.FastLink,
+		}
+
+		if err := s.store.News().Create(m); err != nil {
+			s.error(w, r, http.StatusBadGateway, err)
+			return
 		}
 
 		w.WriteHeader(http.StatusCreated)

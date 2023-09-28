@@ -12,3 +12,7 @@ type DiscountRepository interface {
 	Create(*model.Discount) error
 	Get() ([]*model.Discount, error)
 }
+
+type NewsRepository interface {
+	Create(*model.News) error
+}

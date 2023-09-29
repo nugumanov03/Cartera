@@ -18,5 +18,22 @@ func (r *MessageRepository) Create(m *model.Message) error {
 }
 
 func (r *MessageRepository) Get() ([]*model.Message, error) {
-	return nil, nil
+	result := []*model.Message{}
+
+	rows, err := r.store.db.Query("SELECT * FROM messages")
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+		m := &model.Message{}
+
+		if err := rows.Scan(&m.ID, &m.Title, &m.Body); err != nil {
+			return nil, err
+		}
+
+		result = append(result, m)
+	}
+
+	return result, nil
 }

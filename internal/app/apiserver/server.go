@@ -286,7 +286,21 @@ func (s *server) HandleMessageCreate() http.HandlerFunc {
 
 func (s *server) HandleGetMessages() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		msgs, err := s.store.Message().Get()
+		if err != nil {
+			s.error(w, r, http.StatusBadRequest, err)
+			return
+		}
 
+		for _, e := range msgs {
+			msg, err := json.Marshal(e)
+			if err != nil {
+				s.error(w, r, http.StatusBadRequest, err)
+				return
+			}
+
+			w.Write(msg)
+		}
 	}
 }
 
